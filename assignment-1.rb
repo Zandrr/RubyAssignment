@@ -63,7 +63,7 @@ class NoSuchStrategyError <  StandardError ; end
 
 
 
-		#combine anagrams (5)
+#combine anagrams (5)
 	def combine_anagrams(words)
 
   		words.sort.group_by { |i| i.chars.sort }.values
@@ -71,8 +71,20 @@ class NoSuchStrategyError <  StandardError ; end
 	end
 
 
+end #end of word class
+#(6)
+def glob_match(filenames, patterns)
+
+    patterns.gsub!(/[*?]/, '*' => '.*', '?' => '.')
+    regex = Regexp.new(patterns)
+    filenames.select do |filename|
+        filename =~ regex
+    end
 end
 
+# p glob_match(
+#     ["part1.rb", "part2.rb", "part2.rb~", ".part3.rb.un~", ".part4.rb.un"],
+#     "*part*rb?*")
 
 
 
@@ -144,7 +156,8 @@ class Class
 
         class_eval %Q"
             def #{attr_name}=(value)
-                if !defined? @#{attr_name}_history
+                if !defined?
+                 @#{attr_name}_history
                     @#{attr_name}_history = [@#{attr_name}]
                 end
                 @#{attr_name} = value
